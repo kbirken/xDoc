@@ -88,7 +88,7 @@ class LatexGenerator implements IConfigurableGenerator {
 	}
 	
 	def dispatch CharSequence generate(Document doc) '''
-		«preamble»
+		«doc.preamble»
 		«FOR lang: doc.langDefs»
 			«lang.generate»
 		«ENDFOR»
@@ -127,7 +127,7 @@ class LatexGenerator implements IConfigurableGenerator {
 			'''
 	}
 
-	def preamble() '''
+	def preamble(Document doc) '''
 		\documentclass[a4paper,10pt]{scrreprt}
 		
 		\typearea{12}
@@ -139,6 +139,10 @@ class LatexGenerator implements IConfigurableGenerator {
 		\usepackage[american]{babel}
 		
 		\usepackage{todonotes}
+		
+		«IF doc.titlepic != null»
+			\usepackage{titlepic}
+		«ENDIF»
 		
 		\makeatletter
 		\renewcommand\subsection{\medskip\@startsection{subsection}{2}{\z@}%
@@ -193,6 +197,10 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''
 		«IF doc.authors != null && !doc.authors.contents.empty»
 			\author{«FOR o : doc.authors.contents»«o.genText»«ENDFOR»}
+		«ENDIF»
+
+		«IF doc.titlepic != null»
+			\titlepic{\includegraphics{«copyTitlepic(doc)»}}
 		«ENDIF»
 		
 		«IF doc.title != null»
@@ -475,14 +483,21 @@ class LatexGenerator implements IConfigurableGenerator {
 		
 	}
 
+	def String copyTitlepic(Document doc) {
+		copy(doc.eResource, doc.titlepic)
+	}
+	
 	def String copy(ImageRef imgRef) {
+		copy(imgRef.eResource, imgRef.path)
+	}
+	
+	def String copy(Resource res, String imgPath) {
 		try{
-			val res = imgRef.eResource
 			val buffer = ByteBuffer::allocateDirect(16 * 1024);
 			val uri = res.URI
 			val uriConverter = res.resourceSet.URIConverter
 			val absoluteLocalPath = URI::createFileURI(new File("").absolutePath+"/")
-			val relativeImageURI = URI::createFileURI(imgRef.path)
+			val relativeImageURI = URI::createFileURI(imgPath)
 			val inPath = relativeImageURI.resolve(uri).deresolve(absoluteLocalPath)
 			val inSegments = inPath.segmentsList.subList(1, inPath.segmentCount)
 			val pathInDocument = inSegments.join("/")

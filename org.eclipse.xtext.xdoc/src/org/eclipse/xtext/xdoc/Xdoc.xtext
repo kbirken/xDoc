@@ -19,6 +19,7 @@ Document:
 	'document[' title=TextOrMarkup ']'
 	(MULTI_NL 'subtitle[' subtitle=TextOrMarkup ']')?
 	(MULTI_NL 'authors[' authors=TextOrMarkup ']')?
+	(MULTI_NL 'titlepic[' titlepic=Text ']')?
 	(MULTI_NL langDefs+=LangDef)*
 	(MULTI_NL glossary=Glossary)?
 	(MULTI_NL ((chapters+=Chapter (MULTI_NL chapters+=Chapter)* ) | (parts+=Part (MULTI_NL parts+=Part)*))?);

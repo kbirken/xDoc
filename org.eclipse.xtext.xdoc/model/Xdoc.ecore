@@ -12,6 +12,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="authors" eType="#//TextOrMarkup"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="titlepic" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="chapters" upperBound="-1"
         eType="#//Chapter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="langDefs" upperBound="-1"
