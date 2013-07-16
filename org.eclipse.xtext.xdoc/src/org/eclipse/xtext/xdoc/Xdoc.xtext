@@ -111,9 +111,10 @@ MarkUp:
 	
 Table :
 	{Table}
-	'table['
+	('table:' ANY_WS* name=ID ANY_WS* '[' | 'table[')
+		(ANY_WS* 'caption[' caption=Text ']')?
 		(ANY_WS* format=TableFormat)?
-		(ANY_WS*  rows+=TableRow)*
+		(ANY_WS* rows+=TableRow)*
 		ANY_WS*
 	']';
 

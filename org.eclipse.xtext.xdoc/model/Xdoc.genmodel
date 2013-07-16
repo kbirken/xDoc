@@ -55,6 +55,7 @@
     <genClasses ecoreClass="Xdoc.ecore#//Table">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Table/rows"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Table/format"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//Table/caption"/>
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//TableFormat">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//TableFormat/columns"/>

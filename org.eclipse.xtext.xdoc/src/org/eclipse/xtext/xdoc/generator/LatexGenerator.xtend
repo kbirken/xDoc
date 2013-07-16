@@ -400,11 +400,23 @@ class LatexGenerator implements IConfigurableGenerator {
 
 	def dispatch CharSequence genText(Table tab) '''
 		
+		«IF tab.name != null»
+			\begin{table}
+		«ENDIF»
 		\setlength{\XdocTEffectiveWidth}{\textwidth}
 		\addtolength{\XdocTEffectiveWidth}{-«tab.rows.head.data.size*2».0\tabcolsep}
 		\noindent\begin{tabular}{«tab.genColumns»}
 		«tab.rows.map([e | e.genText]).join("\\\\\n")»
 		\end{tabular}
+		«IF tab.name != null»
+			«IF tab.caption != null && ! tab.caption.matches("^\\s*$")»
+				\caption{«tab.caption»}
+			«ELSE»
+				\caption{}
+			«ENDIF»
+			\label{«tab.name?.toString»}
+			\end{table}
+		«ENDIF»
 	'''
 
 	def dispatch CharSequence genText(TableRow row){

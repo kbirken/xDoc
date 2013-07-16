@@ -66,11 +66,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MarkUp"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//MarkUp">
+  <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//MarkUp #//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="rows" upperBound="-1" eType="#//TableRow"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="format" eType="#//TableFormat"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="caption" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TableFormat">
     <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
