@@ -86,7 +86,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//Link/text"/>
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//ImageRef">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//ImageRef/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//ImageRef/path"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//ImageRef/clazz"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//ImageRef/style"/>
