@@ -477,7 +477,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		\begin{figure}[!ht]
 		\centering
 		\includegraphics[width=«imgRef.widthFactor»\textwidth]{«copy(imgRef)»}
-		«IF imgRef.caption != null && imgRef.caption.matches("^\\s*$")»
+		«IF imgRef.caption != null && ! imgRef.caption.matches("^\\s*$")»
 		\caption{«imgRef.caption»}
 		«ENDIF»
 		\end{figure}
