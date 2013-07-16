@@ -92,6 +92,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//ImageRef/style"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//ImageRef/caption"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xdoc.ecore#//ImageRef/image"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//ImageRef/fraction"/>
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//CodeBlock">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//CodeBlock/contents"/>

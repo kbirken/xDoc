@@ -53,6 +53,7 @@ import static extension org.eclipse.xtext.xdoc.generator.util.numeric.XFloatExte
 import javax.imageio.ImageIO
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage
+import java.util.Locale
 
 class LatexGenerator implements IConfigurableGenerator {
 
@@ -475,13 +476,24 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''
 		\begin{figure}[!ht]
 		\centering
-		\includegraphics{«copy(imgRef)»}
+		\includegraphics[width=«imgRef.widthFactor»\textwidth]{«copy(imgRef)»}
 		«IF imgRef.caption != null && imgRef.caption.matches("^\\s*$")»
 		\caption{«imgRef.caption»}
 		«ENDIF»
 		\end{figure}
 		'''
-		
+	}
+
+	def private getWidthFactor(ImageRef imgRef) {
+		if (imgRef.fraction==null)
+			""
+		else {
+			val f = Double::parseDouble(imgRef.fraction)
+			if (f>0.0 && f<=1.0)
+				String::format(Locale::ENGLISH, "%.2f", f)
+			else
+				""
+		}		
 	}
 
 	def String copyTitlepic(Document doc) {
