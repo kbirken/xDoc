@@ -54,6 +54,13 @@
     <genClasses ecoreClass="Xdoc.ecore#//MarkUp"/>
     <genClasses ecoreClass="Xdoc.ecore#//Table">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Table/rows"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Table/format"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//TableFormat">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//TableFormat/columns"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//TableColumn">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//TableColumn/relativeWidth"/>
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//TableRow">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//TableRow/data"/>

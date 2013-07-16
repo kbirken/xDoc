@@ -55,7 +55,7 @@ public class XdocFormatter extends AbstractDeclarativeFormatter {
 	private void configureTables(FormattingConfig c,
 			XdocGrammarAccess grammarAccess) {
 		c.setIndentationIncrement().after(grammarAccess.getTableAccess().getTableKeyword_1());
-		c.setIndentationDecrement().before(grammarAccess.getTableAccess().getRightSquareBracketKeyword_4());
+		c.setIndentationDecrement().before(grammarAccess.getTableAccess().getRightSquareBracketKeyword_5());
 		
 		c.setNoSpace().after(grammarAccess.getTableRowAccess().getTrKeyword_1());
 		c.setNoSpace().around(grammarAccess.getTableRowAccess().getRightSquareBracketKeyword_4());

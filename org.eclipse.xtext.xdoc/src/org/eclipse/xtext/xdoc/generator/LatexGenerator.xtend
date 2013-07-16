@@ -54,6 +54,7 @@ import javax.imageio.ImageIO
 import org.eclipse.emf.ecore.EClass
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage
 import java.util.Locale
+import org.eclipse.xtext.xdoc.xdoc.TableFormat
 
 class LatexGenerator implements IConfigurableGenerator {
 
@@ -401,7 +402,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		
 		\setlength{\XdocTEffectiveWidth}{\textwidth}
 		\addtolength{\XdocTEffectiveWidth}{-«tab.rows.head.data.size*2».0\tabcolsep}
-		\noindent\begin{tabular}{«tab.rows.head.data.genColumns»}
+		\noindent\begin{tabular}{«tab.genColumns»}
 		«tab.rows.map([e | e.genText]).join("\\\\\n")»
 		\end{tabular}
 	'''
@@ -602,6 +603,22 @@ class LatexGenerator implements IConfigurableGenerator {
 		''''''	  	
 	}
 
+	def genColumns(Table tab){
+		if (tab.format!=null)
+			tab.format.genColumns
+		else
+			tab.rows.head.data.genColumns
+	}
+
+	// compute specific column widths based on tf[] settings 
+	def genColumns(TableFormat tabFormat){
+		val relWidths = tabFormat.columns.map[Integer::parseInt(relativeWidth)]
+		val n = relWidths.reduce[a,b|a+b]
+		val widths = relWidths.map[String::format(Locale::ENGLISH, "%.2f", (it as float) / n)]
+		'''«IF !widths.empty»|«FOR w : widths»p{«w»\XdocTEffectiveWidth}|«ENDFOR»«ENDIF»'''
+	}
+
+	// compute equally spaced columns from example table row
 	def genColumns(List<TableData> tabData){
 		val colFract = new XFloat(1)/new XFloat(tabData.size)
 		'''«IF !tabData.empty»|«FOR td: tabData»p{«colFract»\XdocTEffectiveWidth}|«ENDFOR»«ENDIF»'''

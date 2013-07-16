@@ -69,6 +69,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//MarkUp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="rows" upperBound="-1" eType="#//TableRow"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="format" eType="#//TableFormat"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TableFormat">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
+        eType="#//TableColumn" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TableColumn">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="relativeWidth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TableRow">
     <eStructuralFeatures xsi:type="ecore:EReference" name="data" upperBound="-1" eType="#//TableData"

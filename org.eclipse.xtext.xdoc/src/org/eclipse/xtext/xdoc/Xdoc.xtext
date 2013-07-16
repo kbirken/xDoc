@@ -112,9 +112,20 @@ MarkUp:
 Table :
 	{Table}
 	'table['
+		(ANY_WS* format=TableFormat)?
 		(ANY_WS*  rows+=TableRow)*
 		ANY_WS*
 	']';
+
+TableFormat :
+	{TableFormat}
+	'tf['
+		(ANY_WS* columns+=TableColumn)*
+		ANY_WS*
+	']';
+
+TableColumn :
+	'tcol[' relativeWidth=Text ']';
 
 TableRow :
 	{TableRow}
