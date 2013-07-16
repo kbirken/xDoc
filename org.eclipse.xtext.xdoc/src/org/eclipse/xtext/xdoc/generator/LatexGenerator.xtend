@@ -459,7 +459,8 @@ class LatexGenerator implements IConfigurableGenerator {
 
 	def dispatch CharSequence genText(Link link){
 		links.add(link.url)
-		'''\href{«link.url»}{«link.text»}'''
+		val label = link.text.replace("_", "\\_")
+		'''\href{«link.url»}{«label»}'''
 	}
 
 	def dispatch CharSequence genText(CodeBlock block) {
