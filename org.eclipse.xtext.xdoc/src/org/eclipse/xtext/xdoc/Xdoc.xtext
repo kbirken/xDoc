@@ -121,6 +121,7 @@ Table :
 TableFormat :
 	{TableFormat}
 	'tf['
+		(ANY_WS* professional?='professional')?
 		(ANY_WS* columns+=TableColumn)*
 		ANY_WS*
 	']';
@@ -132,6 +133,7 @@ TableRow :
 	{TableRow}
 	'tr['
 		(ANY_WS* data+=TableData)*
+		(ANY_WS* sep?='---')?
 		ANY_WS*
 	']';
 

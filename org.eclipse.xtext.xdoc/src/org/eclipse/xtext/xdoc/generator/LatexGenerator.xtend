@@ -138,6 +138,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		\usepackage{ae,aecompl,aeguill} 
 		\usepackage[latin1]{inputenc}
 		\usepackage{listings}
+		\usepackage{booktabs}
 		\usepackage[american]{babel}
 		
 		\usepackage{todonotes}
@@ -406,7 +407,13 @@ class LatexGenerator implements IConfigurableGenerator {
 		\setlength{\XdocTEffectiveWidth}{\textwidth}
 		\addtolength{\XdocTEffectiveWidth}{-«tab.rows.head.data.size*2».0\tabcolsep}
 		\noindent\begin{tabular}{«tab.genColumns»}
-		«tab.rows.map([e | e.genText]).join("\\\\\n")»
+		«IF tab.format?.professional»
+			\toprule
+		«ENDIF»
+		«tab.rows.map([e | e.genText]).join»
+		«IF tab.format?.professional»
+			\bottomrule
+		«ENDIF»
 		\end{tabular}
 		«IF tab.name != null»
 			«IF tab.caption != null && ! tab.caption.matches("^\\s*$")»
@@ -420,7 +427,11 @@ class LatexGenerator implements IConfigurableGenerator {
 	'''
 
 	def dispatch CharSequence genText(TableRow row){
-		row.data.map([e|e.genText]).join(" & ")
+		val txt = row.data.map([e|e.genText]).join(" & ") + "\\\\\n"
+		if (row.sep)
+			txt + "\\midrule\n"
+		else
+			txt
 	}
 
 	def dispatch CharSequence genText(TableData tData){
@@ -616,24 +627,31 @@ class LatexGenerator implements IConfigurableGenerator {
 	}
 
 	def genColumns(Table tab){
-		if (tab.format!=null)
-			tab.format.genColumns
-		else
-			tab.rows.head.data.genColumns
+		if (tab.format!=null) {
+			val verticalSeps = ! tab.format.professional
+			if (tab.format.columns.empty)
+				tab.rows.head.data.genColumns(verticalSeps)
+			else
+				tab.format.genColumns(verticalSeps)
+			
+		} else 
+			tab.rows.head.data.genColumns(true)
 	}
 
 	// compute specific column widths based on tf[] settings 
-	def genColumns(TableFormat tabFormat){
+	def genColumns(TableFormat tabFormat, boolean verticalSeps){
 		val relWidths = tabFormat.columns.map[Integer::parseInt(relativeWidth)]
 		val n = relWidths.reduce[a,b|a+b]
 		val widths = relWidths.map[String::format(Locale::ENGLISH, "%.2f", (it as float) / n)]
-		'''«IF !widths.empty»|«FOR w : widths»p{«w»\XdocTEffectiveWidth}|«ENDFOR»«ENDIF»'''
+		val vs = if (verticalSeps) "|" else ""
+		'''«IF !widths.empty»«vs»«FOR w : widths»p{«w»\XdocTEffectiveWidth}«vs»«ENDFOR»«ENDIF»'''
 	}
 
 	// compute equally spaced columns from example table row
-	def genColumns(List<TableData> tabData){
+	def genColumns(List<TableData> tabData, boolean verticalSeps){
 		val colFract = new XFloat(1)/new XFloat(tabData.size)
-		'''«IF !tabData.empty»|«FOR td: tabData»p{«colFract»\XdocTEffectiveWidth}|«ENDFOR»«ENDIF»'''
+		val vs = if (verticalSeps) "|" else ""
+		'''«IF !tabData.empty»«vs»«FOR td: tabData»p{«colFract»\XdocTEffectiveWidth}«vs»«ENDFOR»«ENDIF»'''
 	}
 
 	def String calcStyle(ImageRef ref) {

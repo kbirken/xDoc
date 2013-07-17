@@ -58,7 +58,7 @@ public class XdocFormatter extends AbstractDeclarativeFormatter {
 		c.setIndentationDecrement().before(grammarAccess.getTableAccess().getRightSquareBracketKeyword_6());
 		
 		c.setNoSpace().after(grammarAccess.getTableRowAccess().getTrKeyword_1());
-		c.setNoSpace().around(grammarAccess.getTableRowAccess().getRightSquareBracketKeyword_4());
+		c.setNoSpace().around(grammarAccess.getTableRowAccess().getRightSquareBracketKeyword_5());
 		c.setNoSpace().after(grammarAccess.getTableDataAccess().getTdKeyword_1());
 //		c.setNoSpace().after(grammarAccess.getTableDataAccess().getGroup_2());
 		c.setNoSpace().before(grammarAccess.getTableDataAccess().getRightSquareBracketKeyword_3());

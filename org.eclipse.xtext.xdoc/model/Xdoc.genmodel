@@ -59,12 +59,14 @@
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//TableFormat">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//TableFormat/columns"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//TableFormat/professional"/>
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//TableColumn">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//TableColumn/relativeWidth"/>
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//TableRow">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//TableRow/data"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//TableRow/sep"/>
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//TableData">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//TableData/contents"/>
