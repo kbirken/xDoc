@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.eclipse.xtext.xdoc.ui
-Bundle-Vendor: My Company
-Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: itemis AG
+Bundle-Version: 0.1.1.qualifier
 Bundle-SymbolicName: org.eclipse.xtext.xdoc.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext.xdoc;visibility:=reexport,
