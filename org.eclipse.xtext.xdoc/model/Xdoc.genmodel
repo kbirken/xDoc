@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.xtext.xdoc/emf-gen"
-    editDirectory="/org.eclipse.xtext.xdoc.edit/src" editorDirectory="/org.eclipse.xtext.xdoc.editor/src"
-    modelPluginID="org.eclipse.xtext.xdoc" forceOverwrite="true" modelName="Xdoc"
-    modelPluginClass="" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.xtext.xdoc/emf-gen" editDirectory="/org.eclipse.xtext.xdoc.edit/src"
+    editorDirectory="/org.eclipse.xtext.xdoc.editor/src" modelPluginID="org.eclipse.xtext.xdoc"
+    forceOverwrite="true" modelName="Xdoc" modelPluginClass="" updateClasspath="false"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.xtext.xdoc.edit"
     editorPluginID="org.eclipse.xtext.xdoc.editor" usedGenPackages="../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
+  <foreignModel>Xdoc.ecore</foreignModel>
   <genPackages prefix="Xdoc" basePackage="org.eclipse.xtext.xdoc" disposableProviderFactory="true"
       ecorePackage="Xdoc.ecore#/">
     <genClasses ecoreClass="Xdoc.ecore#//XdocFile">
@@ -18,6 +18,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//Document/titlepic"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Document/chapters"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Document/langDefs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Document/glossary"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Document/parts"/>
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//Chapter">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Chapter/subSections"/>
@@ -33,6 +35,9 @@
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//Section2">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Section2/subSections"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Section2Ref">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Section2Ref/section2"/>
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//Section3">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Section3/subSections"/>
@@ -90,6 +95,7 @@
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//CodeRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xdoc.ecore#//CodeRef/element"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//CodeRef/altText"/>
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//Link">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//Link/url"/>
@@ -117,6 +123,20 @@
     <genClasses ecoreClass="Xdoc.ecore#//LangDef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//LangDef/keywords"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//LangDef/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//GlossaryEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//GlossaryEntry/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//GlossaryEntry/alias"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//GlossaryEntry/description"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Glossary">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Glossary/glossaryEntry"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Part">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Part/chapters"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//PartRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xdoc.ecore#//PartRef/part"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Images" basePackage="org.eclipse.xtext.xdoc" ecorePackage="Images.ecore#/">
