@@ -43,6 +43,7 @@ import org.eclipse.xtext.xdoc.xdoc.UnorderedList
 import org.eclipse.xtext.xdoc.xdoc.XdocFile
 
 import static extension java.net.URLDecoder.*
+import org.eclipse.xtext.xdoc.xdoc.Identifiable
 
 class StatefulEclipseHelpGenerator {
 	
@@ -253,10 +254,17 @@ class StatefulEclipseHelpGenerator {
 		val title = if(ref.ref instanceof AbstractSection) {
 				'''title="Go to &quot;«(ref.ref as AbstractSection).title.genPlainText»&quot;"'''
 			}
-		'''«IF ref.contents.isEmpty »<a href="«uriUtil.getTargetURI(ref)»" «title» >section «ref.ref.name»</a>«ELSE
+		'''«IF ref.contents.isEmpty »<a href="«uriUtil.getTargetURI(ref)»" «title» >«ref.ref.linkText»</a>«ELSE
 		»<a href="«uriUtil.getTargetURI(ref)»" «title»>«FOR tom:ref.contents
 		»«tom.genNonParContent»«ENDFOR»</a>«
-		ENDIF»'''	
+		ENDIF»'''
+	}
+	
+	def private CharSequence getLinkText (Identifiable ident) {
+		switch (ident) {
+			Table: "table " + ident.name
+			default: "section " + ident.name
+		}
 	}
 	
 	def dispatch CharSequence generate(TextOrMarkup tom) 
@@ -336,6 +344,9 @@ class StatefulEclipseHelpGenerator {
 		«FOR tr:table.rows»
 			«tr.generate»
 		«ENDFOR»
+		«IF table.name!=null»
+		<a name="«table.name»"></a>
+		«ENDIF»
 		</table>
 	'''
 

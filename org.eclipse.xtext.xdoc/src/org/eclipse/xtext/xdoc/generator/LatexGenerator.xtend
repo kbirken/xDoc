@@ -475,7 +475,11 @@ class LatexGenerator implements IConfigurableGenerator {
 	}
 
 	def dispatch CharSequence genText(Ref ref){
-		'''«IF ref.contents.isEmpty»\autoref{«ref.ref.name»}«ELSE»\hyperref[«ref.ref.name»]{«ref.contents.map([e|e.genNonParContent]).join»~(§\ref*{«ref.ref.name»})}«ENDIF»'''
+		if (ref.ref instanceof Table) {
+			'''\autoref{«ref.ref.name»}'''
+		} else {
+			'''«IF ref.contents.isEmpty»\autoref{«ref.ref.name»}«ELSE»\hyperref[«ref.ref.name»]{«ref.contents.map([e|e.genNonParContent]).join»~(§\ref*{«ref.ref.name»})}«ENDIF»'''
+		}
 	}
 
 	def dispatch CharSequence genText(Anchor anchor) {
@@ -602,7 +606,7 @@ class LatexGenerator implements IConfigurableGenerator {
 	def boolean containerTypeOf(EObject obj, EClass c) {
 		if(obj.eClass == c) {
 			true
-		} else if(obj.eContainer.eClass == XdocPackage$Literals::XDOC_FILE) {
+		} else if(obj.eContainer.eClass == XdocPackage.Literals::XDOC_FILE) {
 			false
 		} else {
 			obj.eContainer.containerTypeOf(c)
