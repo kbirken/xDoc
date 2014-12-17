@@ -32,7 +32,7 @@
     <repository>
       <id>xtext</id>
       <layout>p2</layout>
-      <url>https://hudson.eclipse.org/hudson/job/Xtext-nightly-HEAD/lastSuccessfulBuild/artifact/xtext.p2.repository/</url>
+      <url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</url>
     </repository>
     <repository>
       <id>mwe2lang</id>
@@ -62,7 +62,7 @@
     <repository>
       <id>eclipse-galileo</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/releases/juno</url>
+      <url>http://download.eclipse.org/releases/luna</url>
     </repository>
   </repositories>
   <profiles>
