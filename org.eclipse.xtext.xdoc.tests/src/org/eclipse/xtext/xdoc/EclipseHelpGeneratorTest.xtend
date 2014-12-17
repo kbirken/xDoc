@@ -23,13 +23,13 @@ import static extension junit.framework.Assert.*
 class EclipseHelpGeneratorTest {
 
 	@Inject extension ParseHelperExtensions<XdocFile>
-	@Inject extension EclipseHelpGenerator
+	@Inject extension EclipseHelpGenerator generator
 	@Inject extension StatefulEclipseHelpGenerator
 	@Inject EclipseResourceFileSystemAccess2 fsa
 
 	@Test
 	def void testRef() {
-		"aRefTest.xdoc".getDoc.eResource.doGenerate(fsa)
+		generator.doGenerate("aRefTest.xdoc".getDoc.eResource, fsa)
 		"aRefTest.html".targetFile.exists.assertTrue
 	}
 

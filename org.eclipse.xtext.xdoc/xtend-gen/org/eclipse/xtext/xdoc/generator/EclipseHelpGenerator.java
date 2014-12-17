@@ -16,14 +16,14 @@ public class EclipseHelpGenerator implements IConfigurableGenerator {
   private Provider<StatefulEclipseHelpGenerator> provider;
   
   @Inject
-  private HashMap<String,Object> config;
+  private HashMap<String, Object> config;
   
   public void doGenerate(final Resource res, final IFileSystemAccess access) {
     final StatefulEclipseHelpGenerator generator = this.provider.get();
     generator.doGenerate(res, ((IFileSystemAccessExtension2) access));
   }
   
-  public Map<String,Object> getConfiguration() {
+  public Map<String, Object> getConfiguration() {
     return this.config;
   }
 }
