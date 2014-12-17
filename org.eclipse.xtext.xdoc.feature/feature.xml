@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.xtext.xdoc.feature"
       label="%featureName"
-      version="0.1.2.qualifier">
+      version="0.1.3.qualifier">
 
    <description url="https://github.com/RvonMassow/xDoc">
       %description

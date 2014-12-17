@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.eclipse.xtext.xdoc</groupId>
   <artifactId>org.eclipse.xtext.xdoc.parent</artifactId>
-  <version>0.1.2-SNAPSHOT</version>
+  <version>0.1.3-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Xdoc</name>
   <properties>
