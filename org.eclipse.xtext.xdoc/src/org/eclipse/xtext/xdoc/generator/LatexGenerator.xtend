@@ -478,7 +478,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		if (ref.ref instanceof Table) {
 			'''\autoref{«ref.ref.name»}'''
 		} else {
-			'''«IF ref.contents.isEmpty»\autoref{«ref.ref.name»}«ELSE»\hyperref[«ref.ref.name»]{«ref.contents.map([e|e.genNonParContent]).join»~(§\ref*{«ref.ref.name»})}«ENDIF»'''
+			'''«IF ref.contents.isEmpty»\autoref{«ref.ref.name»}«ELSE»\hyperref[«ref.ref.name»]{«ref.contents.map([e|e.genNonParContent]).join»~(\S\ref*{«ref.ref.name»})}«ENDIF»'''
 		}
 	}
 
