@@ -62,6 +62,7 @@ class LatexGenerator implements IConfigurableGenerator {
 	@Inject HashMap<String, Object> config
 	@Inject HashSet<String> links
 
+	var afterList = false
 
 	override getConfiguration() {
 		config
@@ -90,7 +91,7 @@ class LatexGenerator implements IConfigurableGenerator {
 	}
 	
 	def dispatch CharSequence generate(Document doc) '''
-		«doc.preamble»
+		«doc.genPreamble»
 		«FOR lang: doc.langDefs»
 			«lang.generate»
 		«ENDFOR»
@@ -101,8 +102,12 @@ class LatexGenerator implements IConfigurableGenerator {
 		«doc.authorAndTitle»
 		
 		\begin{document}
+		«IF doc.preamble==null»
 		\maketitle
 		\tableofcontents
+		«ELSE»
+		\input{«doc.preamble»}
+		«ENDIF»
 		«FOR chapter: doc.chapters»
 			
 			«chapter.generate»
@@ -129,10 +134,18 @@ class LatexGenerator implements IConfigurableGenerator {
 			'''
 	}
 
-	def preamble(Document doc) '''
+	def genPreamble(Document doc) '''
+		«IF doc.book»
+		\documentclass[a4paper,11pt]{book}
+		«ELSE»
 		\documentclass[a4paper,10pt]{scrreprt}
-		
+
 		\typearea{12}
+		«ENDIF»
+		
+		«IF doc.style!=null»
+		\input{«doc.style»}
+		«ENDIF»
 		
 		\usepackage[T1]{fontenc}
 		\usepackage{ae,aecompl,aeguill} 
@@ -148,6 +161,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		«ENDIF»
 		
 		\makeatletter
+		«IF ! doc.book»
 		\renewcommand\subsection{\medskip\@startsection{subsection}{2}{\z@}%
 		  {-.25ex\@plus -.1ex \@minus -.2ex}%
 		  {1.5ex \@plus .2ex \@minus -.4ex}%
@@ -156,6 +170,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		    \raggedsection\normalfont\sectfont\nobreak\size@subsection
 		  }%
 		}
+		«ENDIF»
 		\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
 		  {-3.25ex\@plus -1ex \@minus -.2ex}%
 		  {1.5ex \@plus .2ex}%
@@ -163,13 +178,17 @@ class LatexGenerator implements IConfigurableGenerator {
 		\makeatother
 		
 		\definecolor{listingsbg}{HTML}{E7E7E7}
+		«IF doc.style==null»
 		\definecolor{kwcolor}{HTML}{7F0055}
+		«ENDIF»
 		\definecolor{strcolor}{HTML}{2A00FF}
 		\definecolor{cocolor}{HTML}{3F7F5F}
 
-		\lstset{tabsize=4, basicstyle=\sffamily\small, keywordstyle=\bfseries\color{kwcolor}, commentstyle=\color{cocolor},
-		stringstyle=\color{strcolor}, columns=[r]fullflexible, escapechar={ß}, frame=single, %framexleftmargin=-5pt, framexrightmargin=-5pt, 
-		xleftmargin=5pt, xrightmargin=5pt, rulecolor=\color{lightgray}, showstringspaces=false, backgroundcolor=\color{listingsbg!70}}
+		\lstset{tabsize=4, basicstyle=\sffamily\small,
+		keywordstyle=\bfseries\color{«IF doc.style==null»kwcolor«ELSE»ocre!80!black«ENDIF»},
+		commentstyle=\color{cocolor},
+		stringstyle=\color{strcolor}, columns=[r]fullflexible, escapechar={?}, frame=single, %framexleftmargin=-5pt, framexrightmargin=-5pt, 
+		xleftmargin=5pt, xrightmargin=5pt, rulecolor=\color{lightgray}, showstringspaces=false, backgroundcolor=\color{listingsbg!50}}
 		
 		\newlength{\XdocItemIndent}
 		\newlength{\XdocTEffectiveWidth}
@@ -201,7 +220,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		«IF doc.authors != null && !doc.authors.contents.empty»
 			\author{«FOR o : doc.authors.contents»«o.genText»«ENDFOR»}
 		«ENDIF»
-
+	
 		«IF doc.titlepic != null»
 			\titlepic{\includegraphics{«copyTitlepic(doc)»}}
 		«ENDIF»
@@ -220,10 +239,18 @@ class LatexGenerator implements IConfigurableGenerator {
 	 * FIXME: name for sectionrefs not correctly read
 	 */
 	def dispatch CharSequence generate(AbstractSection sec){
+		afterList = false
 		'''
 		«switch (sec){
 			Part :
-				'''\part{«sec.title.genNonParContent»}'''
+				'''
+					%----------------------------------------------------------------------------------------
+					% PART
+					%----------------------------------------------------------------------------------------
+					
+					\part{«sec.title.genNonParContent»}
+					
+				'''
 			Chapter :			
 				'''\chapter{«sec.title.genNonParContent»}'''
 			Section : 
@@ -439,34 +466,39 @@ class LatexGenerator implements IConfigurableGenerator {
 	}
 
 	def dispatch CharSequence genText(TextPart part){
-		part.text.unescapeXdocChars.escapeLatexChars
+		val sb = new StringBuilder
+		if (afterList && !part.text.trim.empty) {
+			afterList = false
+			sb.append("\\noindent ")
+		}
+		sb.append(part.text.unescapeXdocChars.escapeLatexChars)
+		sb.toString
+	}
+	
+	
+	def dispatch CharSequence genText(OrderedList ol) {
+		val txt = '''
+			\begin{enumerate}
+			«ol.items.map([e | e.genText]).join»
+			\end{enumerate}
+		'''
+		afterList = true
+		txt
 	}
 
-	def dispatch CharSequence genText(OrderedList ol) '''
-		\setlength{\XdocItemIndent}{\textwidth}
-		\begin{enumerate}
-		\addtolength{\XdocItemIndent}{-2.5em}
-		«ol.items.map([e | e.genText]).join»
-		\end{enumerate}
-		\addtolength{\XdocItemIndent}{2.5em}
-	'''
-
 	def dispatch CharSequence genText(UnorderedList ul){
+		val txt = '''
+			\begin{itemize}
+			«ul.items.map([e | e.genText]).join»
+			\end{itemize}
 		'''
-		\setlength{\XdocItemIndent}{\textwidth}
-		\begin{itemize}
-		\addtolength{\XdocItemIndent}{-2.5em}
-		«ul.items.map([e | e.genText]).join»
-		\end{itemize}
-		\addtolength{\XdocItemIndent}{2.5em}
-		'''
+		afterList = true
+		txt
 	}
 
 	def dispatch CharSequence genText(Item item){
 		'''
-		\item \begin{minipage}[t]{\XdocItemIndent}«IF item.contents.head.block»\vspace*{-\baselineskip}«ENDIF»
-		«item.contents.map([e|e.genContent]).join»
-		\end{minipage}
+		\item «item.contents.map([e|e.genContent]).join»
 		'''	
 	}
 
