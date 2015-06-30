@@ -6,6 +6,7 @@
     <groupId>org.eclipse.xtext.xdoc</groupId>
     <artifactId>org.eclipse.xtext.xdoc.parent</artifactId>
     <version>0.1.5-SNAPSHOT</version>
+	<relativePath>../org.eclipse.xtext.xdoc.parent/pom.xml</relativePath>
   </parent>
   <groupId>org.eclipse.xtext.xdoc</groupId>
   <artifactId>org.eclipse.xtext.xdoc.releng</artifactId>
