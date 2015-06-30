@@ -17,6 +17,9 @@ XdocFile:
 
 Document:
 	'document[' title=TextOrMarkup ']'
+		('[' (ANY_WS* book?='book')? ']' )?
+	(MULTI_NL 'style[' style=Text ']')?
+	(MULTI_NL 'preamble[' preamble=Text ']')?
 	(MULTI_NL 'subtitle[' subtitle=TextOrMarkup ']')?
 	(MULTI_NL 'authors[' authors=TextOrMarkup ']')?
 	(MULTI_NL 'titlepic[' titlepic=Text ']')?

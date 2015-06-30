@@ -13,6 +13,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//XdocFile/mainSection"/>
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//Document">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//Document/book"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//Document/style"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//Document/preamble"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Document/subtitle"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Document/authors"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//Document/titlepic"/>
