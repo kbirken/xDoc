@@ -11,7 +11,7 @@ var runtimeProject = "../${projectName}"
 
 Workflow {
     bean = StandaloneSetup {
-		platformUri = "${runtimeProject}/../.."
+		platformUri = "${runtimeProject}/.."
 		scanClassPath = true
 	}
 
@@ -35,6 +35,26 @@ Workflow {
 	component = DirectoryCleaner {
 		directory = "${runtimeProject}.tests/src-gen"
 	}
+
+	/* THIS IS A SKETCH OF A CONFIGURATION USING THE NEW XTEXTGENERATOR
+	component = XtextGenerator {
+		configuration = {
+			project = model.project.StandardProjectConfig {
+				baseName = "${projectName}"
+				rootPath = ".."
+			}
+			code = {
+				encoding = "ISO-8859-1"
+			}
+		}
+		language = {
+			name = "org.eclipse.xtext.xdoc.Xdoc"
+			referencedResource = "platform:/resource/org.eclipse.xtext.xdoc/model/Xdoc.ecore"
+			referencedResource = "platform:/resource/org.eclipse.xtext.xdoc/model/Images.ecore"
+			fileExtensions = file.extensions
+		}
+	}
+	 */
 
 	component = Generator {
 		pathRtProject = runtimeProject
