@@ -1,6 +1,6 @@
 package org.eclipse.xtext.xdoc.generator;
 
-import static com.google.common.collect.Lists.*;
+import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
 
 import java.util.List;
@@ -13,11 +13,13 @@ import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
 import org.eclipse.xtext.ISetup;
 import org.eclipse.xtext.generator.GeneratorComponent;
 import org.eclipse.xtext.generator.IFileSystemAccess;
+import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.xdoc.generator.config.Config;
+
 import com.google.inject.Injector;
 
-public class XdocGeneratorComponent extends GeneratorComponent{
+public class XdocGeneratorComponent extends GeneratorComponent {
 
 	protected List<String> slotNames = newArrayList();
 	protected Map<String,String> outlets = newHashMap();
@@ -72,7 +74,7 @@ public class XdocGeneratorComponent extends GeneratorComponent{
 	}
 
 	@Override
-	protected IFileSystemAccess getConfiguredFileSystemAccess() {
+	protected IFileSystemAccess2 getConfiguredFileSystemAccess() {
 		final JavaIoFileSystemAccess configuredFileSystemAccess = injector.getInstance(JavaIoFileSystemAccess.class);
 		for (Entry<String, String> outs : outlets.entrySet()) {
 			configuredFileSystemAccess.setOutputPath(outs.getKey(), outs.getValue());
