@@ -1,7 +1,6 @@
 package org.eclipse.xtext.xdoc.generator.util;
 
 import com.google.common.base.Objects;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xdoc.xdoc.GlossaryEntry;
@@ -23,8 +22,7 @@ public class GlossaryExtensions {
       if (_equals) {
         final Function1<GlossaryEntry, Boolean> _function_1 = new Function1<GlossaryEntry, Boolean>() {
           public Boolean apply(final GlossaryEntry s) {
-            EList<String> _alias = s.getAlias();
-            return Boolean.valueOf(_alias.contains(aliasOrName));
+            return Boolean.valueOf(s.getAlias().contains(aliasOrName));
           }
         };
         _xifexpression = IterableExtensions.<GlossaryEntry>findFirst(glossary, _function_1);

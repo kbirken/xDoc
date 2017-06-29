@@ -24,8 +24,7 @@ public class AbstractSectionExtension {
   
   protected List<? extends AbstractSection> _sections(final Document doc) {
     EList<? extends AbstractSection> _xifexpression = null;
-    EList<Chapter> _chapters = doc.getChapters();
-    boolean _isEmpty = _chapters.isEmpty();
+    boolean _isEmpty = doc.getChapters().isEmpty();
     boolean _not = (!_isEmpty);
     if (_not) {
       _xifexpression = doc.getChapters();
@@ -56,18 +55,15 @@ public class AbstractSectionExtension {
   }
   
   protected List<? extends AbstractSection> _sections(final ChapterRef chapter) {
-    Chapter _chapter = chapter.getChapter();
-    return _chapter.getSubSections();
+    return chapter.getChapter().getSubSections();
   }
   
   protected List<? extends AbstractSection> _sections(final SectionRef section) {
-    Section _section = section.getSection();
-    return _section.getSubSections();
+    return section.getSection().getSubSections();
   }
   
   protected List<? extends AbstractSection> _sections(final Section2Ref section) {
-    Section2 _section2 = section.getSection2();
-    return _section2.getSubSections();
+    return section.getSection2().getSubSections();
   }
   
   protected List<? extends AbstractSection> _sections(final Section3 section) {
