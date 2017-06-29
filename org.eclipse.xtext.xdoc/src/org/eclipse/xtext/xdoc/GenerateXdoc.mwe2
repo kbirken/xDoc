@@ -13,6 +13,11 @@ Workflow {
     bean = StandaloneSetup {
 		platformUri = "${runtimeProject}/.."
 		scanClassPath = true
+		registerGeneratedEPackage = "org.eclipse.xtext.xbase.XbasePackage"
+		registerGeneratedEPackage = "org.eclipse.xtext.xdoc.xdoc.XdocPackage"
+		registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
+		registerGenModelFile = "platform:/resource/org.eclipse.xtext.xdoc/model/Xdoc.genmodel"
+		resourceSet = org.eclipse.xtext.resource.XtextResourceSet:theResourceSet {}
 	}
 
 	component = DirectoryCleaner {
@@ -20,6 +25,7 @@ Workflow {
 	}
 	
 	component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
+		resourceSet = theResourceSet
 		genModel = "platform:/resource/org.eclipse.xtext.xdoc/model/Xdoc.genmodel"
 		srcPath = "platform:/resource/org.eclipse.xtext.xdoc/src"
 	}
@@ -63,8 +69,7 @@ Workflow {
 		projectNameRt = projectName
 		projectNameUi = "${projectName}.ui"
 		language = {
-			loadedResource = "platform:/resource/org.eclipse.xtext.xdoc/model/Xdoc.ecore"
-			loadedResource = "platform:/resource/org.eclipse.xtext.xdoc/model/Images.ecore"
+			forcedResourceSet = theResourceSet
 			uri = grammarURI
 			fileExtensions = file.extensions
 
