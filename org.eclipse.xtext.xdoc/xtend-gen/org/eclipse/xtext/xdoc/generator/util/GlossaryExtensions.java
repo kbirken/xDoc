@@ -11,6 +11,7 @@ public class GlossaryExtensions {
     GlossaryEntry _xblockexpression = null;
     {
       final Function1<GlossaryEntry, Boolean> _function = new Function1<GlossaryEntry, Boolean>() {
+        @Override
         public Boolean apply(final GlossaryEntry s) {
           String _name = s.getName();
           return Boolean.valueOf(Objects.equal(_name, aliasOrName));
@@ -21,6 +22,7 @@ public class GlossaryExtensions {
       boolean _equals = Objects.equal(matchedEntry, null);
       if (_equals) {
         final Function1<GlossaryEntry, Boolean> _function_1 = new Function1<GlossaryEntry, Boolean>() {
+          @Override
           public Boolean apply(final GlossaryEntry s) {
             return Boolean.valueOf(s.getAlias().contains(aliasOrName));
           }

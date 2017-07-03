@@ -3,26 +3,26 @@
  */
 package org.eclipse.xtext.xdoc.ui.internal;
 
-import java.util.Collections;
-import java.util.Map;
-
-import org.apache.log4j.Logger;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.xtext.ui.shared.SharedStateModule;
-import org.eclipse.xtext.util.Modules2;
-import org.osgi.framework.BundleContext;
-
 import com.google.common.collect.Maps;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
+import java.util.Collections;
+import java.util.Map;
+import org.apache.log4j.Logger;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.shared.SharedStateModule;
+import org.eclipse.xtext.util.Modules2;
+import org.eclipse.xtext.xdoc.XdocRuntimeModule;
+import org.eclipse.xtext.xdoc.ui.XdocUiModule;
+import org.osgi.framework.BundleContext;
 
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
  */
 public class XdocActivator extends AbstractUIPlugin {
-	
+
 	public static final String ORG_ECLIPSE_XTEXT_XDOC_XDOC = "org.eclipse.xtext.xdoc.Xdoc";
 	
 	private static final Logger logger = Logger.getLogger(XdocActivator.class);
@@ -71,20 +71,18 @@ public class XdocActivator extends AbstractUIPlugin {
 			throw new RuntimeException("Failed to create injector for " + language, e);
 		}
 	}
-
+	
 	protected Module getRuntimeModule(String grammar) {
 		if (ORG_ECLIPSE_XTEXT_XDOC_XDOC.equals(grammar)) {
-			return new org.eclipse.xtext.xdoc.XdocRuntimeModule();
+			return new XdocRuntimeModule();
 		}
-		
 		throw new IllegalArgumentException(grammar);
 	}
 	
 	protected Module getUiModule(String grammar) {
 		if (ORG_ECLIPSE_XTEXT_XDOC_XDOC.equals(grammar)) {
-			return new org.eclipse.xtext.xdoc.ui.XdocUiModule(this);
+			return new XdocUiModule(this);
 		}
-		
 		throw new IllegalArgumentException(grammar);
 	}
 	

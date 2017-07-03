@@ -18,11 +18,13 @@ public class EclipseHelpGenerator implements IConfigurableGenerator {
   @Inject
   private HashMap<String, Object> config;
   
+  @Override
   public void doGenerate(final Resource res, final IFileSystemAccess access) {
     final StatefulEclipseHelpGenerator generator = this.provider.get();
     generator.doGenerate(res, ((IFileSystemAccessExtension2) access));
   }
   
+  @Override
   public Map<String, Object> getConfiguration() {
     return this.config;
   }

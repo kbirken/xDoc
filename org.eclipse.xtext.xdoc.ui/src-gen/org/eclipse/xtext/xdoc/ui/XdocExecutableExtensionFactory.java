@@ -3,12 +3,10 @@
  */
 package org.eclipse.xtext.xdoc.ui;
 
-import org.eclipse.xtext.ui.guice.AbstractGuiceAwareExecutableExtensionFactory;
-import org.osgi.framework.Bundle;
-
 import com.google.inject.Injector;
-
+import org.eclipse.xtext.ui.guice.AbstractGuiceAwareExecutableExtensionFactory;
 import org.eclipse.xtext.xdoc.ui.internal.XdocActivator;
+import org.osgi.framework.Bundle;
 
 /**
  * This class was generated. Customizations should only happen in a newly

@@ -9,9 +9,12 @@
   <name>Xdoc</name>
   <properties>
     <tycho.version>0.22.0</tycho.version>
+	<platform-version-name>neon</platform-version-name>
   </properties>
   <modules>
+    <module>../org.eclipse.xtext.xdoc.targetplatform</module>
     <module>../org.eclipse.xtext.xdoc</module>
+    <module>../org.eclipse.xtext.xdoc.ide</module>
     <module>../org.eclipse.xtext.xdoc.ui</module>
     <module>../org.eclipse.xtext.xdoc.generator</module>
     <module>../org.eclipse.xtext.xdoc.feature</module>
@@ -60,9 +63,9 @@
       <url>http://download.eclipse.org/modeling/tmf/xtext/updates/orbit</url>
     </repository>-->
     <repository>
-      <id>eclipse-galileo</id>
+      <id>eclipse-${platform-version-name}</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/releases/luna</url>
+      <url>http://download.eclipse.org/releases/${platform-version-name}</url>
     </repository>
   </repositories>
   <profiles>
