@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.xtext.xdoc.feature"
       label="%featureName"
-      version="0.1.5.qualifier">
+      version="0.2.0.qualifier">
 
    <description url="https://github.com/RvonMassow/xDoc">
       %description
@@ -25,6 +25,13 @@
 
    <plugin
          id="org.eclipse.xtext.xdoc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.xdoc.ide"
          download-size="0"
          install-size="0"
          version="0.0.0"
