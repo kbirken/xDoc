@@ -3,6 +3,8 @@
  */
 package org.eclipse.xtext.xdoc
 
+import org.eclipse.xtext.common.types.xtext.AbstractTypeScopeProvider
+import org.eclipse.xtext.common.types.xtext.ClasspathBasedTypeScopeProvider
 import org.eclipse.xtext.common.types.xtext.TypesAwareDefaultGlobalScopeProvider
 import org.eclipse.xtext.formatting.IFormatter
 import org.eclipse.xtext.generator.OutputConfigurationProvider
@@ -42,5 +44,9 @@ import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionStrategy
 
 	override Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
 		return TypesAwareDefaultGlobalScopeProvider
+	}
+
+	def Class<? extends AbstractTypeScopeProvider> bindAbstractTypeScopeProvider() {
+		return ClasspathBasedTypeScopeProvider
 	}
 }
