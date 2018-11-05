@@ -25,27 +25,27 @@
     <repository>
       <id>emf</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/modeling/emf/updates/releases/</url>
+      <url>http://download.eclipse.org/releases/photon/201806271001</url>
     </repository>
     <repository>
       <id>xpand</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/nightly/</url>
+      <url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.14.0/</url>
     </repository>
     <repository>
       <id>xtext</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</url>
+      <url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.14.0/</url>
     </repository>
     <repository>
       <id>mwe2lang</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/nightly</url>
+      <url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.0/</url>
     </repository>
     <repository>
       <id>mwe2</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/nightly</url>
+      <url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.0/</url>
     </repository>
     <!--<repository>
       <id>antlrruntime</id>
@@ -55,7 +55,7 @@
     <repository>
       <id>antlrgenerator</id>
       <layout>p2</layout>
-      <url>http://download.itemis.com/updates/nightly/site</url>
+      <url>http://download.itemis.com/updates/releases/2.1.1</url>
     </repository>
     <!--<repository>
       <id>orbit</id>
