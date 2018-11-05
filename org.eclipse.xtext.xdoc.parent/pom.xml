@@ -9,7 +9,7 @@
   <name>Xdoc</name>
   <properties>
     <tycho.version>0.22.0</tycho.version>
-	<platform-version-name>neon</platform-version-name>
+	<platform-version-name>photon</platform-version-name>
   </properties>
   <modules>
     <module>../org.eclipse.xtext.xdoc.targetplatform</module>
