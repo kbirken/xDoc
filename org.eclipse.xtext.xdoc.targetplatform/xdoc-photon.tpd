@@ -1,0 +1,47 @@
+//
+// Use the "Target Platform Definition DSL" tool for working with this file.
+//
+// P2 Repository for installation: https://dl.bintray.com/mbarbero/fr.obeo.releng.targetplatform/latest
+// Homepage: https://github.com/mbarbero/fr.obeo.releng.targetplatform 
+//
+
+target "Xdoc Target Platform - Eclipse 4.8"
+
+with requirements source
+
+environment en
+
+// required installable units from the Photon platform 
+location photon "http://download.eclipse.org/releases/photon/201806271001" {
+	org.eclipse.sdk.feature.group
+	org.eclipse.pde.feature.group
+	
+	org.eclipse.emf.transaction.sdk.feature.group [1.12.0,2.0.0)
+	org.eclipse.emf.eef.sdk-feature.feature.group [1.5.1,1.6.0)
+	org.eclipse.swt [3.107.0,4.0.0)
+
+	org.eclipse.equinox.executable.feature.group [3.8.0,4.0.0)
+	org.eclipse.emf.common [2.14.0,3.0.0)
+	org.eclipse.emf.sdk.feature.group [2.14.0,3.0.0)
+	
+}
+
+
+// ANTLR parser, needed for Xtext
+location "http://download.itemis.com/updates/releases/2.1.1" {
+	de.itemis.xtext.antlr.sdk.feature.group [2.1.1,3.0.0)
+	de.itemis.xtext.antlr.feature.feature.group [2.1.1,3.0.0)
+}
+
+// Xtext and Xtend and related EMF stuff
+location "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.14.0/" {
+	org.eclipse.xtext.sdk.feature.group [2.14.0,2.15.0)
+	org.eclipse.xtend.sdk.feature.group [2.14.0,2.15.0)
+}
+
+// mwe2 workflow DSL
+location "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.0/" {
+	org.eclipse.emf.mwe2.language.sdk.feature.group [2.9.0,3.0.0)
+	org.eclipse.emf.mwe2.runtime.sdk.feature.group [2.9.0,3.0.0)
+}
+
