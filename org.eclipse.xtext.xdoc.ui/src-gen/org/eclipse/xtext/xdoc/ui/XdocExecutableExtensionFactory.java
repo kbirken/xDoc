@@ -4,6 +4,7 @@
 package org.eclipse.xtext.xdoc.ui;
 
 import com.google.inject.Injector;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.xtext.ui.guice.AbstractGuiceAwareExecutableExtensionFactory;
 import org.eclipse.xtext.xdoc.ui.internal.XdocActivator;
 import org.osgi.framework.Bundle;
@@ -16,12 +17,13 @@ public class XdocExecutableExtensionFactory extends AbstractGuiceAwareExecutable
 
 	@Override
 	protected Bundle getBundle() {
-		return XdocActivator.getInstance().getBundle();
+		return Platform.getBundle(XdocActivator.PLUGIN_ID);
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return XdocActivator.getInstance().getInjector(XdocActivator.ORG_ECLIPSE_XTEXT_XDOC_XDOC);
+		XdocActivator activator = XdocActivator.getInstance();
+		return activator != null ? activator.getInjector(XdocActivator.ORG_ECLIPSE_XTEXT_XDOC_XDOC) : null;
 	}
-	
+
 }
