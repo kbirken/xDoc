@@ -8,8 +8,8 @@
   <packaging>pom</packaging>
   <name>Xdoc</name>
   <properties>
-    <tycho.version>1.1.0</tycho.version>
-	<platform-version-name>photon</platform-version-name>
+    <tycho.version>1.3.0</tycho.version>
+	<platform-version-name>2020-09</platform-version-name>
   </properties>
   <modules>
     <module>../org.eclipse.xtext.xdoc.targetplatform</module>
@@ -25,27 +25,27 @@
     <repository>
       <id>emf</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/releases/photon/201806271001</url>
+      <url>http://download.eclipse.org/releases/2020-09/202009161000</url>
     </repository>
     <repository>
       <id>xpand</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.14.0/</url>
+      <url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.23.0/</url>
     </repository>
     <repository>
       <id>xtext</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.14.0/</url>
+      <url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.23.0/</url>
     </repository>
     <repository>
       <id>mwe2lang</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.0/</url>
+      <url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.11.3/</url>
     </repository>
     <repository>
       <id>mwe2</id>
       <layout>p2</layout>
-      <url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.0/</url>
+      <url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.11.3/</url>
     </repository>
     <!--<repository>
       <id>antlrruntime</id>
