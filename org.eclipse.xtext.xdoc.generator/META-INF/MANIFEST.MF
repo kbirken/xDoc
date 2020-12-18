@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.xtext.xdoc;visibility:=reexport,
  org.apache.commons.logging;visibility:=reexport,
  org.apache.commons.lang;bundle-version="2.0.0";visibility:=reexport
 Import-Package: org.apache.log4j;version="1.2.15"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: templates,
  templates.eclipsehelp,
  templates.util,
@@ -25,3 +25,4 @@ Export-Package: templates,
    org.eclipse.emf.mwe.core,
    org.eclipse.emf.mwe.core.monitor,
    org.eclipse.emf.mwe.core.lib"
+Automatic-Module-Name: org.eclipse.xtext.xdoc.generator
