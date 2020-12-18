@@ -10,6 +10,7 @@
   <properties>
     <tycho.version>1.3.0</tycho.version>
 	<platform-version-name>2020-09</platform-version-name>
+	<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
   </properties>
   <modules>
     <module>../org.eclipse.xtext.xdoc.targetplatform</module>
@@ -111,6 +112,42 @@
         <version>${tycho.version}</version>
         <configuration>
           <resolver>p2</resolver>
+          <pomDependencies>consider</pomDependencies>
+          <target>
+            <artifact>
+              <groupId>org.eclipse.xtext.xdoc</groupId>
+              <artifactId>org.eclipse.xtext.xdoc.targetplatform</artifactId>
+              <version>${project.version}</version>
+              <classifier>xdoc-${platform-version-name}</classifier>
+            </artifact>
+          </target>
+<!--			<environments>
+				<environment>
+					<os>win32</os>
+					<ws>win32</ws>
+					<arch>x86</arch>
+				</environment>
+				<environment>
+					<os>win32</os>
+					<ws>win32</ws>
+					<arch>x86_64</arch>
+				</environment>
+				<environment>
+					<os>macosx</os>
+					<ws>cocoa</ws>
+					<arch>x86_64</arch>
+				</environment>
+				<environment>
+					<os>linux</os>
+					<ws>gtk</ws>
+					<arch>x86</arch>
+				</environment>
+				<environment>
+					<os>linux</os>
+					<ws>gtk</ws>
+					<arch>x86_64</arch>
+				</environment>
+			</environments>   -->
         </configuration>
       </plugin>
     </plugins>
